@@ -1,5 +1,4 @@
 import numpy as np
-from rich import print
 
 # Dimensões do tabuleiro
 ROWS = 6
@@ -181,7 +180,7 @@ class PopOutGame:
 # LOOP DE JOGO (TESTE)
 # =========================================================
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     game = PopOutGame()
     game_over = False
 
