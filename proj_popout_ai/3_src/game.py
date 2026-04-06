@@ -32,3 +32,27 @@ class PopOutGame: # Classe para representar o estado do jogo PopOut
             self.board[0][col] = 0
             return True
         return False #Coluna vazia ou peça adversária, movimento inválido
+    
+    #Alternar Jogador
+    def switch_player(self): #Alterna o jogador atual
+        self.current_player *= -1
+
+    #Gerar Jogadas Possíveis
+    def get_valid_moves(self): #Gera uma lista de movimentos válidos (drop e pop) para o jogador atual
+        moves = []
+
+        # Drops
+        for col in range(COLS): #Verifica se é possível colocar uma peça na coluna (se a parte superior da coluna estiver vazia)
+            if self.board[0][col] == 0:
+                moves.append(("drop", col))
+
+        # Pops
+        for col in range(COLS): #Verifica se é possível remover uma peça da coluna (se a parte inferior da coluna tiver uma peça do jogador atual)
+            if self.board[ROWS-1][col] == self.current_player:
+                moves.append(("pop", col))
+
+        return moves
+    
+    #Visualização Simples (debug)
+    def print_board(self): #Imprime o estado atual do tabuleiro
+        print(np.flip(self.board, 0))
